@@ -1,4 +1,3 @@
-import firebase from "./Firebase";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { getAuth, EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
 

@@ -3,7 +3,6 @@ import React, { useState, useCallback } from "react";
 import { Image } from "semantic-ui-react";
 import { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
-import firebase from "../../utils/Firebase";
 import {
   getStorage,
   ref,
@@ -13,6 +12,7 @@ import {
 import { getAuth, updateProfile } from "firebase/auth";
 
 import NoAvatar from "../../assets/png/user.png";
+import AlertErrors from "../../utils/AlertErrors";
 
 export default function UploadAvatar({ user, setReloadApp }) {
   const auth = getAuth();
@@ -51,7 +51,7 @@ export default function UploadAvatar({ user, setReloadApp }) {
             });
             setReloadApp((prevState) => !prevState);
           })
-          .catch(() => toast.error("Error al actualizar al avatar"));
+          .catch((err) => AlertErrors(err.code));
       }
     );
   };
